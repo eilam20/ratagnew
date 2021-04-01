@@ -6,8 +6,7 @@
 
 <div class="col-md-8">
 
-   <h1>Site: {{site}}
-</h1>
+   <h1>Site: {{site}}</h1>
 
     
 <div id="mapid" style="height: 600px;"></div>
@@ -25,7 +24,7 @@
     //convert the data to json
     var data_Hazards = JSON.parse(raw_data_Hazards);
 
-    
+    //create the map
     var mymap = L.map('mapid').setView([0, 0], 10);
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZWlsYW0yMCIsImEiOiJja214ZzVpdmswb256MnFwcXE5aTcwYzAzIn0.KbVqSXcRIf3fxQhefNBgvQ', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -42,6 +41,7 @@
    
     console.log(data_Hazards);
 
+    //function to add info to popup
     function siteslabels (feature, layer){
         layer.bindPopup("<p class='info header'>"+ 
         "<b>Title: " + feature.properties.title + "</b>" + 
@@ -49,6 +49,8 @@
         "</p>");
         };
 
+
+          // add the markers for the hazard from the geojson data
         L.geoJson(data_Hazards,{
             onEachFeature: siteslabels
         }).addTo(mymap);
