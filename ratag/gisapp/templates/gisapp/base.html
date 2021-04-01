@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+    <!-- js -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+
+
+{% block header %}
+{% endblock header%}
+
+
+
+
+
+
+    <title>Ratag</title>
+
+   
+</head>
+
+<body>
+   
+    
+  
+    <main role="main" class="container" align="left">
+        <div class="row" >
+            <a class="navbar-brand mr-4" href="{% url 'gisapp:Sites_list' %}">Sites</a>
+            <a class="navbar-brand mr-4" href="{% url 'gisapp:Create_hazard' %}">Create hazard</a>
+            {% block content %}{% endblock %}
+        </div>
+        {% block summary %}{% endblock %}
+        {% block ishur %}{% endblock %}
+
+
+        </div>
+    </main>
+    {% block javascript %}
+    {% endblock %}
+    {% block footer %}
+    {% endblock %}
+
+
+
+</body>
+
+</html>

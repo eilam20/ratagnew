@@ -1,0 +1,48 @@
+{%extends "gisapp/base.html"%}
+{% block content %}
+
+
+
+
+<div class="col-md-8">
+
+   <a class="btn btn-info" href="{% url 'gisapp:load_sites' %}">load sites from json</a>
+
+    <table class="table" id="main_table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Sites</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for site in sites %}
+            <tr>
+
+                <td>
+                    <a href="{{ site.get_absolute_url }}">{{site}}</a>
+                </td>
+                   
+                </td>
+               
+
+            </tr>
+
+            {% endfor %}
+        <tbody>
+    </table>
+
+    {% endblock content %}
+
+    
+
+
+    {% block javascript %}
+
+
+        
+        
+
+
+    {% endblock %}

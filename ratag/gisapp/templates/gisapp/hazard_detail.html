@@ -1,0 +1,35 @@
+{%extends "gisapp/base.html"%}
+{% block content %}
+
+
+
+
+<div class="col-md-8">
+
+   <h1>{{hazard}}</h1>
+<h2>created at {{hazard.created_time}}</h2>
+
+    <h3>Sites that contain this hazard:</h3>
+    <ul>
+        {%for site in sites%}
+        <li>{{site}}</li>
+        
+        {%endfor%}
+      </ul>
+
+    {% endblock content %}
+
+
+
+  
+
+    {% block javascript %}
+
+
+       
+        
+      
+        
+
+
+    {% endblock %}

@@ -1,0 +1,77 @@
+{%extends "gisapp/base.html"%}
+{% block content %}
+
+
+
+
+<div class="col-md-8">
+
+   <h1>Site: {{site}}
+</h1>
+
+    
+<div id="mapid" style="height: 600px;"></div>
+<script>
+
+    // get the polygon data
+    var raw_data = '{{geojson|escapejs}}';
+    
+    //convert the data to json
+    var data = JSON.parse(raw_data);
+
+ // get the hazards points data
+ var raw_data_Hazards = '{{Hazards|escapejs}}';
+    
+    //convert the data to json
+    var data_Hazards = JSON.parse(raw_data_Hazards);
+
+    
+    var mymap = L.map('mapid').setView([0, 0], 10);
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZWlsYW0yMCIsImEiOiJja214ZzVpdmswb256MnFwcXE5aTcwYzAzIn0.KbVqSXcRIf3fxQhefNBgvQ', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'your.mapbox.access.token'
+    }).addTo(mymap);
+  
+    //add the site polygon to the map and center the map to the polygon
+    L.geoJSON(data).addTo(mymap);
+    mymap.fitBounds(L.geoJSON(data).getBounds()); 
+   
+    console.log(data_Hazards);
+
+    function siteslabels (feature, layer){
+        layer.bindPopup("<p class='info header'>"+ 
+        "<b>Title: " + feature.properties.title + "</b>" + 
+        "</br>Created time: " + feature.properties.created_time +
+        "</p>");
+        };
+
+        L.geoJson(data_Hazards,{
+            onEachFeature: siteslabels
+        }).addTo(mymap);
+
+
+
+
+</script>
+</div>
+
+    {% endblock content %}
+
+
+
+  
+
+    {% block javascript %}
+
+
+       
+        
+      
+        
+
+
+    {% endblock %}
