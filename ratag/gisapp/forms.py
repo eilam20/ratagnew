@@ -1,5 +1,4 @@
 from django.contrib.gis import forms
-import datetime
 from .models import Hazard
 
 
