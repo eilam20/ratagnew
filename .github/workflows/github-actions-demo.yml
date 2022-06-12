@@ -2,7 +2,7 @@ name: GitHub Actions Demo
 on: [workflow_dispatch]
   inputs:
     version:
-    description: 'Version'
+      description: 'Version'
     tags:
       description: 'Test scenario tags'
 jobs:
